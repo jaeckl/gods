@@ -91,6 +91,7 @@ func (sl *Slice) Std() float64 {
 	return math.Sqrt(sl.Var())
 }
 
+// some comments
 func (sl *Slice) Mode() float64 {
 	m := make(map[float64]int)
 	for _, v := range sl.fields {
