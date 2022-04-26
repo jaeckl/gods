@@ -18,30 +18,6 @@ type DataTable struct {
 	selection     Selection
 }
 
-func FromMap(m map[string][]interface{}) *DataTable {
-	dt := &DataTable{
-		columns:       make(map[int]*Slice),
-		columnNameIds: make(map[string]int),
-		shape:         [2]int{len(m), 0},
-	}
-	i := 0
-	for k, v := range m {
-		dt.shape[1] = len(v)
-		dt.columns[i] = &Slice{
-			size:   len(v),
-			fields: make(map[int]*Cell),
-		}
-		for j, val := range v {
-			dt.columns[i].fields[j] = &Cell{
-				value: val,
-			}
-		}
-		dt.columnNameIds[k] = i
-		i++
-	}
-	return dt
-}
-
 func _validate_colums_unique(a, b map[int]*Slice) {
 	for k := range a {
 		if _, ok := b[k]; ok {
