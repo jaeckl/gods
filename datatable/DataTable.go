@@ -149,6 +149,14 @@ func (dt *DataTable) RowView(row int) *Slice {
 	return slice
 }
 
+func (dt *DataTable) IterRows() []*Slice {
+	slice := make([]*Slice, dt.shape[0])
+	for i := 0; i < dt.shape[0]; i++ {
+		slice[i] = dt.RowView(i)
+	}
+	return slice
+}
+
 func (dt *DataTable) ColView(col int) *Slice {
 	if col < 0 || col >= dt.shape[1] {
 		panic("col out of bounds")
